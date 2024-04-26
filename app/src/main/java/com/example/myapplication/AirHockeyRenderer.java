@@ -19,6 +19,7 @@ import static android.opengl.GLES20.glVertexAttribPointer;
 import static android.opengl.GLES20.glViewport;
 
 import static javax.microedition.khronos.opengles.GL10.GL_LINES;
+import static javax.microedition.khronos.opengles.GL10.GL_LINE_LOOP;
 import static javax.microedition.khronos.opengles.GL10.GL_POINTS;
 
 import java.nio.ByteBuffer;
@@ -47,8 +48,12 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
                 //Line 1
                 -0.5f, 0f, 0.5f, 0f,
                 //Mallets
-                0f, -0.25f, 0f, 0.25f
-
+                0f, -0.25f, 0f, 0.25f,
+                //Border
+                0.5f, 0.5f, -0.5f, -0.5f, -0.5f, 0.5f,
+                0.5f, 0,5f, 0.5f, -0.5f, -0.5f, -0.5f,
+                //0.5f, -0.5f, -0.5f, -0.5f,
+                //-0.5f, -0.5f, -0.5f, 0.5f
         };
         vertexData =ByteBuffer.allocateDirect(
                         tableVerticesWithTriangles.length * BYTES_PER_FLOAT)
@@ -61,7 +66,7 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        glClearColor(0.0f, 0.7f, 0.2f, 0.0f);
+        glClearColor(0.4f, 0.4f, 0.5f, 0.0f);
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(
                 context, R.raw.simple_vertex_shader);
         String fragmentShaderSource = TextResourceReader .readTextFileFromResource(
@@ -105,5 +110,8 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         //Draw the second mallet red
         glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
         glDrawArrays(GL_POINTS, 9,1);
+        //Draw the border
+        glUniform4f(uColorLocation,  1.0f, 0.0f, 0.0f, 1.0f);
+        glDrawArrays(GL_LINE_LOOP, 11,4);
     }
 }
