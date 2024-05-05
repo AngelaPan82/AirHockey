@@ -50,7 +50,7 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     private int aColorLocation;
     private int aPositionLocation;
     private int uMatrixLocation;
-    private float[] temp = new float [16];
+    private final float[] temp = new float [16];
     private final float [] modelMatrix = new float [16];
     private final float [] projectionMatrix = new float[16];
     public AirHockeyRenderer(Context context) {
