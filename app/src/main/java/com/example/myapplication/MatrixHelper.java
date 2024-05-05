@@ -1,10 +1,11 @@
 package com.example.myapplication;
 
 public class MatrixHelper {
-    public static void perspectiveM (float[] m, float yFovInDegrees, float aspect, float n, float f) {
-        //calculating the Focal length
-        final float angleInRadians = (float) (yFovInDegrees*Math.PI / 180.0);
+    public static void perspectiveM(float[] m, float yFovInDegrees, float aspect,
+                                    float n, float f) {
+        final float angleInRadians = (float) (yFovInDegrees * Math.PI / 180.0);
         final float a = (float) (1.0 / Math.tan(angleInRadians / 2.0));
+
         m[0] = a / aspect;
         m[1] = 0f;
         m[2] = 0f;

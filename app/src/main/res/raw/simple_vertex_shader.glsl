@@ -8,3 +8,4 @@ void main() {
     gl_PointSize = 10.0;
     gl_Position =  u_Matrix * a_Position;
 }
+
